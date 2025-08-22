@@ -1,13 +1,43 @@
 #include <Arduino.h>
 #include <Mouse.h>
 
+#define ENABLEPIN 2
+
 void setup()
 {
-    Serial.begin(9600);
+  pinMode(2, INPUT);
+  pinMode(3, INPUT);
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
 }
 
 void loop()
 {
-    Serial.println("Hello world!");
-    delay(1000);
+  if (!digitalRead(ENABLEPIN))
+    while (true) {
+      delay(1000);
+    }
+
+
+  while (true) {
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
