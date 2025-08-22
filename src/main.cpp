@@ -4,17 +4,29 @@
 #define ENABLEPIN 2
 #define XPIN A0
 #define YPIN A1
+#define MAGIC 0.5
 
 int centerX = 571;
 int centerY = 547;
 
-int scaleAxis(int reading) {
+int scaleAxis(int reading, int center) {
+  int var = 0;
+  int result = 0;
 
+  var = reading - center;
 
+if (abs(var) < 50)
+    var = 0;
 
-  return 0;
+  result = map(var, -500, 500, -15, 15);
+  return result;
 }
 
+void printAxis(int x, int y) {
+  Serial.print(x); 
+  Serial.print("  ");
+  Serial.println(y);
+}
 
 void disableRoutine() {
   int x = 0;
@@ -24,10 +36,6 @@ void disableRoutine() {
   while (true) {
   x = analogRead(XPIN);
   y = analogRead(YPIN);
-
-  Serial.print(x); 
-  Serial.print("  ");
-  Serial.println(y);
 
   delay(100);
   }
@@ -46,6 +54,7 @@ void setup()
 void loop() {
   int x = 0;
   int y = 0;
+  int speed = 0;
 
 
   if (!digitalRead(ENABLEPIN))
@@ -54,8 +63,13 @@ void loop() {
 
   Mouse.begin();
   while (true) {
-    x = scaleAxis(analogRead(XPIN));
-    y = scaleAxis(analogRead(YPIN));
+    x = scaleAxis(analogRead(XPIN), centerX);
+    y = scaleAxis(analogRead(YPIN), centerY);
+    speed = floor(sqrt( pow(x,2)+ pow(y,2)));
+    Mouse.move(x * -1, y, 0);
+
+    delay(20 - (speed * MAGIC));
+
 
 
   }
