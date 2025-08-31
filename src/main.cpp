@@ -2,8 +2,8 @@
 #include <Mouse.h>
 
 #define ENABLEPIN 2
-#define XPIN A0
-#define YPIN A1
+#define XPIN A1
+#define YPIN A0
 #define MAGIC 0.5
 
 int centerX = 571;
