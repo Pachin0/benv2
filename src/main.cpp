@@ -71,11 +71,11 @@ void loop() {
     Mouse.move(x * -1, y, 0);
 
     if (RCLICK == 1) {
-      Mouse.click(MOUSE_LEFT);
+      Mouse.click(MOUSE_RIGHT);
     }
 
     if (LCLICK == 1) {
-      Mouse.click(MOUSE_RIGHT);
+      Mouse.click(MOUSE_LEFT);
     }
     
     delay(20 - (speed * MAGIC));
