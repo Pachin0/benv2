@@ -4,6 +4,8 @@
 #define ENABLEPIN 2
 #define XPIN A1
 #define YPIN A0
+#define LCLICK A2
+#define RCLICK A3
 #define MAGIC 0.5
 
 int centerX = 571;
@@ -68,6 +70,14 @@ void loop() {
     speed = floor(sqrt( pow(x,2)+ pow(y,2)));
     Mouse.move(x * -1, y, 0);
 
+    if (RCLICK == 1) {
+      Mouse.click(MOUSE_LEFT);
+    }
+
+    if (LCLICK == 1) {
+      Mouse.click(MOUSE_RIGHT);
+    }
+    
     delay(20 - (speed * MAGIC));
 
 
